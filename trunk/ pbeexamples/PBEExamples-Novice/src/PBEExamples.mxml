@@ -14,6 +14,7 @@
 			
 			public static function log(...args):void{
 				for(var count:int = 0 ; count < args.length ; count++){
+					//currently displaying only string later on explode objects
 					if(args[count] is String){
 						logString(args[count]);
 					}
