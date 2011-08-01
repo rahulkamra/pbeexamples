@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="1024" minHeight="768">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import examples.scene.SceneController;
+			
+			[Bindable]
+			public static var logText:String = '';
+			
+			public static function log(...args):void{
+				for(var count:int = 0 ; count < args.length ; count++){
+					if(args[count] is String){
+						logString(args[count]);
+					}
+				}		
+				logText = logText + "\n"
+			}
+			
+			private static function logString(data:String):void{
+				logText = logText + data 
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Button x="61" y="226" label="Hello World" click="SceneController.createScene()"/>
+	<s:TextArea x="1199" y="47" width="244" height="804" id="txiMain" text="{logText}"/>
+	<s:Label x="1198" y="27" width="245" text="Output" textAlign="center"/>
 </s:Application>
