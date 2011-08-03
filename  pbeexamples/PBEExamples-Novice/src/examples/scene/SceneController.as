@@ -5,6 +5,7 @@ package examples.scene
 	import com.pblabs.engine.core.LevelEvent;
 	import com.pblabs.engine.core.LevelManager;
 	import com.pblabs.engine.entity.IEntity;
+	import com.pblabs.engine.entity.PropertyReference;
 	import com.pblabs.engine.entity.allocateEntity;
 	import com.pblabs.rendering2D.BasicSpatialManager2D;
 	import com.pblabs.rendering2D.DisplayObjectScene;
@@ -125,7 +126,7 @@ package examples.scene
 		}
 		
 		//this will create a circle
-		private static function createSimpleShapeRenderer(scene:IScene2D=null):SimpleShapeRenderer{
+		public static function createSimpleShapeRenderer(scene:IScene2D=null):SimpleShapeRenderer{
 			var simple:SimpleShapeRenderer = new SimpleShapeRenderer;
 			simple.fillColor = 0x0000FF0;
 			simple.isCircle = true;
