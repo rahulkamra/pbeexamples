@@ -2,13 +2,17 @@ package examples.scene
 {
 	import com.adobe.serialization.json.JSON;
 	import com.pblabs.engine.PBE;
+	import com.pblabs.engine.core.LevelEvent;
+	import com.pblabs.engine.core.LevelManager;
 	import com.pblabs.engine.entity.IEntity;
 	import com.pblabs.engine.entity.allocateEntity;
 	import com.pblabs.rendering2D.BasicSpatialManager2D;
 	import com.pblabs.rendering2D.DisplayObjectScene;
+	import com.pblabs.rendering2D.IScene2D;
 	import com.pblabs.rendering2D.SimpleShapeRenderer;
 	import com.pblabs.rendering2D.ui.SceneView;
 	
+	import flash.events.Event;
 	import flash.geom.Point;
 	
 	import mx.core.FlexGlobals;
@@ -65,6 +69,7 @@ package examples.scene
 			
 			doScene = new DisplayObjectScene;
 			doScene.sceneView = sceneView;
+			
 			doScene.callOnAdd();
 		}
 		
@@ -82,24 +87,45 @@ package examples.scene
 			doScene.sceneView = sceneView;
 		}
 		
+		public static function createScene_using_wrapper():void{
+			sceneView = new SceneView;
+			PBE.initializeScene(sceneView,"SceneView",null,null);
+			
+			var hero:IEntity = allocateEntity();
+			hero.addComponent(createSimpleShapeRenderer(PBE.scene),"Render");
+			hero.initialize("Hero");
+		}
+		
+		
+		public static function createScene_using_xml():void{
+			sceneView = new SceneView;
+			sceneView.name = "SceneView"
+			//PBE.initializeScene(sceneView,"SceneView",null,null);
+			loadLevel();
+		}
+		
+		private static function loadLevel():void{
+			LevelManager.instance.addEventListener(LevelEvent.LEVEL_LOADED_EVENT,levelLoaded);
+			LevelManager.instance.load("../level/levelDescriptions.xml",1);
+		}
+		
+		protected static function levelLoaded(event:LevelEvent):void
+		{
+			
+		}
+		
 		/**
 		 * 
 		 * 
 		 **/
-		
-		
 		public static function createHero():void{ 
 			var hero:IEntity = allocateEntity();
 			hero.addComponent(createSimpleShapeRenderer(),"Render");
-			
-			//var spatialManager:BasicSpatialManager2D = new BasicSpatialManager2D;
-			//hero.addComponent(spatialManager,"Spatial");
-			//hero.addComponent(doScene,"doScene");
 			hero.initialize("Hero");
 		}
 		
 		//this will create a circle
-		private static function createSimpleShapeRenderer():SimpleShapeRenderer{
+		private static function createSimpleShapeRenderer(scene:IScene2D=null):SimpleShapeRenderer{
 			var simple:SimpleShapeRenderer = new SimpleShapeRenderer;
 			simple.fillColor = 0x0000FF0;
 			simple.isCircle = true;
@@ -107,8 +133,41 @@ package examples.scene
 			simple.radius = 25;
 			simple.lineColor = 0x000000;
 			//assigning scene to the PBE scene
-			simple.scene = doScene;
+			if(scene){
+				simple.scene = scene;
+			}else{
+				simple.scene = doScene;
+			}
 			return simple;
+		}
+		
+		
+		/**
+		 * 
+		 * Conclusion
+		 */ 
+		
+		/**
+		 * 
+		 * Good Practise
+		 * 
+		 **/
+		public static function createSceneView():void{
+			sceneView = new SceneView;
+		}
+		public static function createScene():void{
+			//if you are creating scene wihout xml
+			PBE.initializeScene(sceneView,"SceneView",DisplayObjectScene,null);
+			//if you use xml to create scene , then
+			
+			/*
+			<entity name="Scene">
+				<component type="com.pblabs.rendering2D.DisplayObjectScene"
+					name="Scene">
+					<sceneViewName>SceneView</sceneViewName>
+				</component>
+			</entity>
+			*/
 		}
 		
 		
