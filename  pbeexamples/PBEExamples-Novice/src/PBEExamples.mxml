@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="1024" minHeight="768">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="1024" minHeight="768" applicationComplete="application1_creationCompleteHandler(event)">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
 			import examples.scene.SceneController;
+			
+			import mx.events.FlexEvent;
 			
 			[Bindable]
 			public static var logText:String = '';
@@ -26,9 +28,18 @@
 				logText = logText + data 
 			}
 			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				SceneController.init();
+				
+			}
+			
 		]]>
 	</fx:Script>
-	<s:Button x="61" y="226" label="Hello World" click="SceneController.createScene()"/>
+	<s:Button x="61" y="226" label="Create Scene _1" click="SceneController.createScene_1();SceneController.createHero()"/>
+	<s:Button x="61" y="259" label="Create Scene _2" click="SceneController.createScene_2();SceneController.createHero()"/>
+	<s:Button x="61" y="292" label="Create Scene _buggy" click="SceneController.createScene_buggy();SceneController.createHero()"/>
 	<s:TextArea x="1199" y="47" width="244" height="804" id="txiMain" text="{logText}"/>
 	<s:Label x="1198" y="27" width="245" text="Output" textAlign="center"/>
 </s:Application>

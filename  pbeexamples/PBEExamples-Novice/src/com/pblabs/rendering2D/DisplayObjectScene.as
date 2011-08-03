@@ -419,6 +419,16 @@ package com.pblabs.rendering2D
             return null;
         }
 
+		/**
+		 * This function does not exist in library , this is just a hack to demostrate some exmaple , please don't call this method
+		 * Comment by Rahul
+		 * 
+		 **/
+		public function callOnAdd():void{
+			onAdd();
+		}
+		
+		
         public function updateTransform():void
         {
             if(!sceneView)
