@@ -1,0 +1,65 @@
+<things version="1">
+	<!-- Spatial Manager -->
+	<entity name="Box2dSpatial">
+		<component type="com.pblabs.box2D.Box2DManagerComponent"
+			name="Manager" />
+	</entity>
+
+	<entity name="Scene">
+		<component type="com.pblabs.rendering2D.DisplayObjectScene"
+			name="Scene">
+			<sceneViewName>SceneView</sceneViewName>
+		</component>
+	</entity>
+
+
+
+	<entity name="Hero">
+		<component type="com.pblabs.rendering2D.SimpleShapeRenderer"
+			name="Render">
+			<scene entityName="Scene" componentName="Scene" />
+			<fillColor>0x0000FF0</fillColor>
+			<isCircle>true</isCircle>
+			<radius>25</radius>
+			<lineColor>0x000000</lineColor>
+			<lineSize>0x000000</lineSize>
+			<positionProperty>@Spatial.position</positionProperty>
+			<rotationProperty>@Spatial.rotation</rotationProperty>
+		</component>
+
+		<component type="com.pblabs.box2D.Box2DSpatialComponent"
+			name="Spatial">
+			<spatialManager componentReference="Box2dSpatial" />
+
+			<canRotate>false</canRotate>
+			<canSleep>false</canSleep>
+			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
+				<_0 type="com.pblabs.box2D.CircleCollisionShape">
+				<radius>1</radius>
+			</_0>
+			</collisionShapes>
+			<position type="">
+				<x>200</x>
+				<y>100</y>
+			</position>
+			<size type="">
+				<x>60</x>
+				<y>60</y>
+			</size>
+		</component>
+
+		<component type="com.pblabs.box2D.Box2DDebugComponent" name="Debug">
+			<spatialManager componentReference="Box2dSpatial" />
+			<scene entityName="Scene" componentName="Scene" />
+		</component>
+	</entity>
+
+
+	<group name="Level2Data">
+		<objectReference name="Scene" />
+		<objectReference name="Box2dSpatial" />
+		<objectReference name="Hero" />
+	</group>
+
+</things>
+
