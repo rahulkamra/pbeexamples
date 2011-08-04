@@ -55,10 +55,28 @@
 	</entity>
 
 
+	<entity name="NonPhysicsHero">
+		<component type="com.pblabs.rendering2D.SimpleShapeRenderer"
+			name="Render">
+			<scene entityName="Scene" componentName="Scene" />
+			<fillColor>0x0000FF0</fillColor>
+			<isCircle>true</isCircle>
+			<radius>25</radius>
+			<lineColor>0x000000</lineColor>
+			<lineSize>0x000000</lineSize>
+		</component>
+	</entity>
+
 	<group name="Level2Data">
 		<objectReference name="Scene" />
 		<objectReference name="Box2dSpatial" />
 		<objectReference name="Hero" />
+	</group>
+	<!-- Removing the box2d spatial so that we can add that with action script -->
+	<group name="Level3Data">
+		<objectReference name="Scene" />
+		<objectReference name="Box2dSpatial" />
+		<objectReference name="NonPhysicsHero" />
 	</group>
 
 </things>
