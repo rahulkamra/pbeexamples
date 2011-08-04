@@ -121,11 +121,6 @@ package examples.simplebox2d
 		
 		protected static function levelLoaded(event:LevelEvent):void
 		{
-			var hero:IEntity = PBE.lookupEntity("Hero");
-			hero.addComponent(new TickComponent(),"Tick");
-			hero.initialize();
-			trace("Finished!!");
-			//trace(PBE.lookupComponentByName("Hero","Spatial"));
 		}
 		
 	}
