@@ -5,4 +5,12 @@
 			if we didnt specify then it will not be loaded -->
 		<group name="Level1Data" />
 	</level>
+	
+	<level index="2">
+		<file filename="../level/simplebox2d/level.xml" />
+		<!-- Important , must specify the group to load from createscene.xml , 
+			if we didnt specify then it will not be loaded -->
+		<group name="Level2Data" />
+	</level>
+	
 </levelDescriptions>

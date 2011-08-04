@@ -75,4 +75,6 @@
 	<s:TextArea x="1199" y="47" width="244" height="804" id="txiMain" text="{logText}"/>
 	<s:Label x="1198" y="27" width="245" text="Output" textAlign="center"/>
 	<s:Button x="61" y="476" width="139" label="Box2d Component" click="SimpleBox2dController.createSceneView();SimpleBox2dController.createScene();SimpleBox2dController.createBox2DHero();"/>
+	<s:Button x="61" y="517" width="178" label="Box2d Component With XML" click="SimpleBox2dController.createScene_using_xml();"/>
+	
 </s:Application>
