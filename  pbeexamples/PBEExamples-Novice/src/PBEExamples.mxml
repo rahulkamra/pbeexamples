@@ -62,8 +62,6 @@
 				SceneController.init();
 			}
 			
-			
-			
 		]]>
 	</fx:Script>
 	<s:Button x="61" y="226" label="Create Scene _1" click="SceneController.createScene_1();SceneController.createHero()"/>
