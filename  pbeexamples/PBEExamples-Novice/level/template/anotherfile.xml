@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<things version="1">
+	<entity name="HeroX" template="HeroTemplate">
+		<component name="Spatial">
+			<position>
+				<x>200</x>
+				<y>-100</y>
+			</position>
+		</component>
+	</entity>
+
+
+	<group name="Level4.1Data">
+		<!-- <objectReference name="HeroTemplate" /> -->
+		<objectReference name="HeroX" />
+	</group>
+</things>
