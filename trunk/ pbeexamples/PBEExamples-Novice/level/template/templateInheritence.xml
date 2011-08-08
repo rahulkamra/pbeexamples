@@ -1,0 +1,53 @@
+<things version="1">
+	<!-- Spatial Manager -->
+
+
+	<template name="HeroTemplate1">
+		<component type="com.pblabs.rendering2D.SimpleShapeRenderer"
+			name="Render">
+			<scene entityName="Scene" componentName="Scene" />
+			<fillColor>0x0000FF0</fillColor>
+			<isCircle>true</isCircle>
+			<radius>25</radius>
+			<lineColor>0x000000</lineColor>
+			<lineSize>0x000000</lineSize>
+			<positionProperty>@Spatial.position</positionProperty>
+			<rotationProperty>@Spatial.rotation</rotationProperty>
+		</component>
+	</template>
+	
+	<template name="HeroTemplate2" template="HeroTemplate1">
+		<component type="com.pblabs.box2D.Box2DSpatialComponent"
+			name="Spatial">
+			<spatialManager componentReference="Box2dSpatial" />
+
+			<canRotate>false</canRotate>
+			<canSleep>false</canSleep>
+			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
+				<_0 type="com.pblabs.box2D.CircleCollisionShape">
+				<radius>1</radius>
+			</_0>
+			</collisionShapes>
+			<size type="">
+				<x>60</x>
+				<y>60</y>
+			</size>
+		</component>
+	</template>
+	
+
+	<entity name="Hero"  template="HeroTemplate2">
+		<component name="Spatial">
+			<position>
+				<x>200</x>
+				<y>100</y>
+			</position>
+		</component>
+	</entity>
+	
+	<group name="Level5Data">
+<!--		<objectReference name="HeroTemplate" />-->
+		<objectReference name="Hero" />
+	</group>
+</things>
+

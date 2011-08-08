@@ -59,8 +59,6 @@
 				PBE.registerType(com.pblabs.rendering2D.spritesheet.SpriteSheetComponent);
 				PBE.registerType(com.pblabs.rendering2D.spritesheet.CellCountDivider);
 				PBE.registerType(com.pblabs.animation.AnimatorComponent);
-				
-				
 				SceneController.init();
 			}
 			
@@ -79,6 +77,7 @@
 	<s:Button x="61" y="476" width="139" label="Box2d Component" click="SimpleBox2dController.createSceneView();SimpleBox2dController.createScene();SimpleBox2dController.createBox2DHero();"/>
 	<s:Button x="61" y="517" width="178" label="Box2d Component With XML" click="SimpleBox2dController.createScene_using_xml();"/>
 	<s:Button x="61" y="559" width="178" label="Mix Component" click="RemixController.createScene_using_xml();"/>
-	<s:Button x="61" y="592" width="178" label="Templates" click="TemplateController.createScene_using_xml();"/>
+	<s:Button x="61" y="592" width="178" label="Templates" click="TemplateController.createScene_using_xml(4);"/>
+	<s:Button x="62" y="630" width="178" label="Template Inheritence" click="TemplateController.createScene_using_xml(5);"/>
 	
 </s:Application>
