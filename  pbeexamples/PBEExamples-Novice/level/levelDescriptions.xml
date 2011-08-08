@@ -28,9 +28,19 @@
 		<!-- Important , must specify the group to load from createscene.xml , 
 			if we didnt specify then it will not be loaded -->
 		<group name="Level4Data" />
-		
+
 		<file filename="../level/template/anotherfile.xml" />
 		<group name="Level4.1Data" />
+	</level>
+
+	<level index="5">
+		<file filename="../level/template/common.xml" />
+		<group name="common" />
+
+		<file filename="../level/template/templateInheritence.xml" />
+		<!-- Important , must specify the group to load from createscene.xml , 
+			if we didnt specify then it will not be loaded -->
+		<group name="Level5Data" />
 	</level>
 
 </levelDescriptions>

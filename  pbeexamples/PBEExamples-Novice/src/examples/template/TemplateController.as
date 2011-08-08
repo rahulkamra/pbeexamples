@@ -13,15 +13,15 @@ package examples.template
 		}
 		
 		private static var sceneView:SceneView;
-		public static function createScene_using_xml():void{
+		public static function createScene_using_xml(levelNumber:int):void{
 			sceneView = new SceneView;
 			sceneView.name = "SceneView"
-			loadLevel();
+			loadLevel(levelNumber);
 		}
 		
-		private static function loadLevel():void{
+		private static function loadLevel(levelNumber:int):void{
 			LevelManager.instance.addEventListener(LevelEvent.LEVEL_LOADED_EVENT,levelLoaded);
-			LevelManager.instance.load("../level/levelDescriptions.xml",4);
+			LevelManager.instance.load("../level/levelDescriptions.xml",levelNumber);
 		}
 		
 		protected static function levelLoaded(event:Event):void
