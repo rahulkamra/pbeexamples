@@ -22,6 +22,7 @@
 			
 			import examples.scene.SceneController;
 			import examples.simplebox2d.SimpleBox2dController;
+			import examples.template.TemplateController;
 			import examples.xmlwithas.RemixController;
 			
 			import mx.events.FlexEvent;
@@ -78,5 +79,6 @@
 	<s:Button x="61" y="476" width="139" label="Box2d Component" click="SimpleBox2dController.createSceneView();SimpleBox2dController.createScene();SimpleBox2dController.createBox2DHero();"/>
 	<s:Button x="61" y="517" width="178" label="Box2d Component With XML" click="SimpleBox2dController.createScene_using_xml();"/>
 	<s:Button x="61" y="559" width="178" label="Mix Component" click="RemixController.createScene_using_xml();"/>
+	<s:Button x="61" y="592" width="178" label="Templates" click="TemplateController.createScene_using_xml();"/>
 	
 </s:Application>
