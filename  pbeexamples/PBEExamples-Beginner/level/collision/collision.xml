@@ -26,6 +26,8 @@
 			<spatialManager componentReference="Box2dSpatial" />
 			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
 				<_0 type="com.pblabs.box2D.PolygonCollisionShape">
+				<friction>4</friction>
+				<restitution>0.5</restitution>
 				<Vertices childType="flash.geom.Point">
 					<!-- Size of the graphic /10 -->
 					<_>
@@ -96,6 +98,8 @@
 			<spatialManager componentReference="Box2dSpatial" />
 			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
 				<_0 type="com.pblabs.box2D.PolygonCollisionShape">
+				<friction>4</friction>
+				<restitution>0.5</restitution>
 				<Vertices childType="flash.geom.Point">
 					<_>
 						<x>-2</x>
@@ -153,6 +157,8 @@
 			<spatialManager componentReference="Box2dSpatial" />
 			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
 				<_0 type="com.pblabs.box2D.PolygonCollisionShape">
+				<friction>4</friction>
+				<restitution>0.5</restitution>
 				<Vertices childType="flash.geom.Point">
 					<_>
 						<x>-2</x>
@@ -223,6 +229,8 @@
 			</CollidesWithTypes>
 			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
 				<_0 type="com.pblabs.box2D.PolygonCollisionShape">
+				<friction>4</friction>
+				<restitution>0.5</restitution>
 				<Vertices childType="flash.geom.Point">
 					<!-- Size of the graphic /10 -->
 					<_>
