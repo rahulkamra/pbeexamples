@@ -1,0 +1,60 @@
+package examples.collision
+{
+	import com.pblabs.box2D.Box2DSpatialComponent;
+	import com.pblabs.engine.PBE;
+	import com.pblabs.engine.core.InputMap;
+	import com.pblabs.engine.core.LevelEvent;
+	import com.pblabs.engine.core.LevelManager;
+	import com.pblabs.engine.entity.IEntity;
+	import com.pblabs.engine.entity.allocateEntity;
+	import com.pblabs.rendering2D.DisplayObjectScene;
+	import com.pblabs.rendering2D.SimpleShapeRenderer;
+	import com.pblabs.rendering2D.ui.SceneView;
+	
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.geom.Point;
+	
+	import mx.core.FlexGlobals;
+
+	public class CollisionController
+	{
+		public function CollisionController()
+		{
+		}
+		
+		
+		private static var sceneView:SceneView;
+		public static function createScene_using_xml(levelNumber:int):void{
+			sceneView = new SceneView;
+			sceneView.name = "SceneView"
+			loadLevel(levelNumber);
+			
+		}
+		
+		private static function loadLevel(levelNumber:int):void{
+			LevelManager.instance.addEventListener(LevelEvent.LEVEL_LOADED_EVENT,levelLoaded);
+			LevelManager.instance.load("../level/levelDescriptions.xml",levelNumber);
+		}
+		
+		protected static function levelLoaded(event:Event):void
+		{
+			// TODO Auto-generated method stub
+			var scene:MyScene =  PBE.lookupComponentByName("Scene","Scene") as MyScene;
+			FlexGlobals.topLevelApplication.addEventListener(MouseEvent.CLICK,click)
+		}
+		
+		protected static function click(event:MouseEvent):void
+		{
+			// TODO Auto-generated method stub
+			var iEntity:IEntity = PBE.templateManager.instantiateEntity("Box");
+			var simpleShape:SimpleShapeRenderer = iEntity.lookupComponentByName("Render") as SimpleShapeRenderer;
+			var spatial:Box2DSpatialComponent = iEntity.lookupComponentByName("Spatial") as Box2DSpatialComponent;
+			
+			spatial.position = new Point(FlexGlobals.topLevelApplication.mouseX-FlexGlobals.topLevelApplication.width/2,FlexGlobals.topLevelApplication.mouseY-FlexGlobals.topLevelApplication.height/2);
+			
+			//var scene:MyScene =  PBE.lookupComponentByName("Scene","Scene") as MyScene;
+			//scene.add(simpleShape);
+		}
+	}
+}
