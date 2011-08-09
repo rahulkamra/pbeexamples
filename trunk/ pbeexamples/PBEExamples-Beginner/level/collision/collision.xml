@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<things version="1">
+
+	<template name="BoxTemplateRenderer">
+		<component type="com.pblabs.rendering2D.SimpleShapeRenderer"
+			name="Render">
+			<scene entityName="Scene" componentName="Scene" />
+			<fillColor>0x0000FF0</fillColor>
+			<isSquare>true</isSquare>
+			<isCircle>false</isCircle>
+			<lineColor>0x000000</lineColor>
+			<lineSize>0x000000</lineSize>
+			<positionProperty>@Spatial.position</positionProperty>
+			<rotationProperty>@Spatial.rotation</rotationProperty>
+		</component>
+		<component type="com.pblabs.box2D.Box2DDebugComponent" name="Debug">
+			<spatialManager componentReference="Box2dSpatial" />
+			<scene entityName="Scene" componentName="Scene" />
+		</component>
+	</template>
+
+	<template name="BoxTemplateSpatial" template="BoxTemplateRenderer">
+		<component type="com.pblabs.box2D.Box2DSpatialComponent"
+			name="Spatial">
+			<spatialManager componentReference="Box2dSpatial" />
+			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
+				<_0 type="com.pblabs.box2D.PolygonCollisionShape">
+				<Vertices childType="flash.geom.Point">
+					<!-- Size of the graphic /10 -->
+					<_>
+						<x>-600</x>
+						<y>-2</y>
+					</_>
+					<_>
+						<x>600</x>
+						<y>-2</y>
+					</_>
+					<_>
+						<x>600</x>
+						<y>2</y>
+					</_>
+					<_>
+						<x>-600</x>
+						<y>2</y>
+					</_>
+				</Vertices>
+			</_0>
+			</collisionShapes>
+		</component>
+	</template>
+
+	<entity name="Bounds" template="BoxTemplateSpatial">
+		<component name="Spatial">
+			<canMove>false</canMove>
+			<canRotate>false</canRotate>
+			<canSleep>false</canSleep>
+			<position>
+				<x>-1000</x>
+				<y>400</y>
+			</position>
+			<CollisionType>
+				<Type>Base</Type>
+			</CollisionType>
+			<CollidesWithTypes>
+				<Type>Box</Type>
+			</CollidesWithTypes>
+		</component>
+		<component name="Render">
+			<size type="">
+				<x>6000</x>
+				<y>20</y>
+			</size>
+		</component>
+	</entity>
+
+
+	<entity name="LeftBounds">
+		<component type="com.pblabs.rendering2D.SimpleShapeRenderer"
+			name="Render">
+			<scene entityName="Scene" componentName="Scene" />
+			<fillColor>0x0000FF0</fillColor>
+			<isSquare>true</isSquare>
+			<isCircle>false</isCircle>
+			<lineColor>0x000000</lineColor>
+			<lineSize>0x000000</lineSize>
+			<size type="">
+				<x>20</x>
+				<y>1000</y>
+			</size>
+			<positionProperty>@Spatial.position</positionProperty>
+			<rotationProperty>@Spatial.rotation</rotationProperty>
+		</component>
+		<component type="com.pblabs.box2D.Box2DSpatialComponent"
+			name="Spatial">
+			<spatialManager componentReference="Box2dSpatial" />
+			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
+				<_0 type="com.pblabs.box2D.PolygonCollisionShape">
+				<Vertices childType="flash.geom.Point">
+					<_>
+						<x>-2</x>
+						<y>-100</y>
+					</_>
+					<_>
+						<x>2</x>
+						<y>-100</y>
+					</_>
+					<_>
+						<x>2</x>
+						<y>100</y>
+					</_>
+					<_>
+						<x>-2</x>
+						<y>100</y>
+					</_>
+				</Vertices>
+			</_0>
+			</collisionShapes>
+			<CollisionType>
+				<Type>Base</Type>
+			</CollisionType>
+			<CollidesWithTypes>
+				<Type>Box</Type>
+			</CollidesWithTypes>
+			<canMove>false</canMove>
+			<canRotate>false</canRotate>
+			<canSleep>false</canSleep>
+			<position>
+				<x>-800</x>
+				<y>-100</y>
+			</position>
+		</component>
+	</entity>
+	
+	<entity name="RightBounds">
+		<component type="com.pblabs.rendering2D.SimpleShapeRenderer"
+			name="Render">
+			<scene entityName="Scene" componentName="Scene" />
+			<fillColor>0x0000FF0</fillColor>
+			<isSquare>true</isSquare>
+			<isCircle>false</isCircle>
+			<lineColor>0x000000</lineColor>
+			<lineSize>0x000000</lineSize>
+			<size type="">
+				<x>20</x>
+				<y>1000</y>
+			</size>
+			<positionProperty>@Spatial.position</positionProperty>
+			<rotationProperty>@Spatial.rotation</rotationProperty>
+		</component>
+		<component type="com.pblabs.box2D.Box2DSpatialComponent"
+			name="Spatial">
+			<spatialManager componentReference="Box2dSpatial" />
+			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
+				<_0 type="com.pblabs.box2D.PolygonCollisionShape">
+				<Vertices childType="flash.geom.Point">
+					<_>
+						<x>-2</x>
+						<y>-100</y>
+					</_>
+					<_>
+						<x>2</x>
+						<y>-100</y>
+					</_>
+					<_>
+						<x>2</x>
+						<y>100</y>
+					</_>
+					<_>
+						<x>-2</x>
+						<y>100</y>
+					</_>
+				</Vertices>
+			</_0>
+			</collisionShapes>
+			<CollisionType>
+				<Type>Base</Type>
+			</CollisionType>
+			<CollidesWithTypes>
+				<Type>Box</Type>
+			</CollidesWithTypes>
+			<canMove>false</canMove>
+			<canRotate>false</canRotate>
+			<canSleep>false</canSleep>
+			<position>
+				<x>800</x>
+				<y>-100</y>
+			</position>
+		</component>
+	</entity>
+
+
+
+
+	<template name="Box">
+		<component type="com.pblabs.rendering2D.SimpleShapeRenderer"
+			name="Render">
+			<scene entityName="Scene" componentName="Scene" />
+			<fillColor>0x0000FF0</fillColor>
+			<isSquare>true</isSquare>
+			<isCircle>false</isCircle>
+			<lineColor>0x000000</lineColor>
+			<lineSize>0x000000</lineSize>
+			<size type="">
+				<x>50</x>
+				<y>50</y>
+			</size>
+			<positionProperty>@Spatial.position</positionProperty>
+			<rotationProperty>@Spatial.rotation</rotationProperty>
+		</component>
+		<component type="com.pblabs.box2D.Box2DSpatialComponent"
+			name="Spatial">
+			<spatialManager componentReference="Box2dSpatial" />
+			<canMove>true</canMove>
+			<canRotate>true</canRotate>
+			<canSleep>true</canSleep>
+			<CollisionType>
+				<Type>Box</Type>
+			</CollisionType>
+			<CollidesWithTypes>
+				<Type>Base</Type>
+				<Type>Box</Type>
+			</CollidesWithTypes>
+			<collisionShapes childType="com.pblabs.box2D.CollisionShape">
+				<_0 type="com.pblabs.box2D.PolygonCollisionShape">
+				<Vertices childType="flash.geom.Point">
+					<!-- Size of the graphic /10 -->
+					<_>
+						<x>-5</x>
+						<y>-5</y>
+					</_>
+					<_>
+						<x>5</x>
+						<y>-5</y>
+					</_>
+					<_>
+						<x>5</x>
+						<y>5</y>
+					</_>
+					<_>
+						<x>-5</x>
+						<y>5</y>
+					</_>
+				</Vertices>
+			</_0>
+			</collisionShapes>
+
+		</component>
+	</template>
+
+
+	<group name="Level1Data">
+		<objectReference name="Bounds" />
+		<objectReference name="LeftBounds" />
+		<objectReference name="RightBounds" />
+	</group>
+
+</things>
