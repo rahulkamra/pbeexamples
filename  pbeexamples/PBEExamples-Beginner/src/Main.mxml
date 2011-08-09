@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" applicationComplete="application1_applicationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.pblabs.animation.AnimatorComponent;
+			import com.pblabs.box2D.Box2DDebugComponent;
+			import com.pblabs.box2D.Box2DManagerComponent;
+			import com.pblabs.box2D.Box2DSpatialComponent;
+			import com.pblabs.box2D.CircleCollisionShape;
+			import com.pblabs.box2D.PolygonCollisionShape;
+			import com.pblabs.engine.PBE;
+			import com.pblabs.rendering2D.SimpleShapeRenderer;
+			import com.pblabs.rendering2D.SpriteRenderer;
+			import com.pblabs.rendering2D.SpriteSheetRenderer;
+			import com.pblabs.rendering2D.spritesheet.CellCountDivider;
+			import com.pblabs.rendering2D.spritesheet.SpriteSheetComponent;
+			import com.pblabs.rendering2D.ui.FlexSceneView;
+			
+			import examples.collision.CollisionController;
+			
+			import mx.core.FlexGlobals;
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			
+			protected function application1_applicationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				init();
+				
+			}
+			
+			public static var wrapper:UIComponent = new UIComponent;
+			public static function init():void{
+				//wrapper for flex
+				PBE.registerType(com.pblabs.rendering2D.SimpleShapeRenderer);
+				PBE.registerType(com.pblabs.box2D.Box2DDebugComponent);
+				PBE.registerType(com.pblabs.box2D.Box2DManagerComponent);
+				PBE.registerType(com.pblabs.box2D.Box2DSpatialComponent);
+				PBE.registerType(com.pblabs.box2D.CircleCollisionShape);
+				PBE.registerType(com.pblabs.box2D.PolygonCollisionShape);
+				
+				PBE.registerType(com.pblabs.rendering2D.ui.FlexSceneView);
+				PBE.registerType(com.pblabs.rendering2D.SpriteRenderer);
+				PBE.registerType(com.pblabs.rendering2D.SpriteSheetRenderer);
+				PBE.registerType(com.pblabs.rendering2D.spritesheet.SpriteSheetComponent);
+				PBE.registerType(com.pblabs.rendering2D.spritesheet.CellCountDivider);
+				PBE.registerType(com.pblabs.animation.AnimatorComponent);
+				
+				
+				wrapper.width = FlexGlobals.topLevelApplication.width;
+				wrapper.height = FlexGlobals.topLevelApplication.height;
+				FlexGlobals.topLevelApplication.addElement(wrapper);
+				//starting PBE
+				PBE.startup(wrapper);
+				//new SimpleShapeRenderer().isSquare
+				//new Box2DSpatialComponent().
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Button x="31" y="60" label="Generate Map" click="CollisionController.createScene_using_xml(1);"/>
+	<s:Label x="10" y="89" width="138" height="48"
+			 text="Click to Generate the MAp and then click anywhere to fall the boxes"/>
+</s:Application>
