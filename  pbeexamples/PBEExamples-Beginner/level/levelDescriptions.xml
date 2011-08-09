@@ -1,0 +1,12 @@
+<levelDescriptions>
+	<level index="1">
+		<file filename="../level/common.xml" />
+		<group name="common" />
+
+		<file filename="../level/collision/collision.xml" />
+		<!-- Important , must specify the group to load from createscene.xml , 
+			if we didnt specify then it will not be loaded -->
+		<group name="Level1Data" />
+	</level>
+
+</levelDescriptions>

@@ -1,0 +1,20 @@
+<things version="1">
+	<entity name="Box2dSpatial">
+		<component type="com.pblabs.box2D.Box2DManagerComponent"
+			name="Manager" />
+	</entity>
+
+	<entity name="Scene">
+		<component type="examples.collision.MyScene"
+			name="Scene">
+			<sceneViewName>SceneView</sceneViewName>
+		</component>
+	</entity>
+	
+	<group name="common">
+		<objectReference name="Box2dSpatial" />
+		<objectReference name="Scene" />
+	</group>
+
+
+</things>
