@@ -51,7 +51,9 @@ package com.pblabs.animation
             {
                 _currentAnimation.animate(elapsed);                               
                 owner.setProperty(reference, _currentAnimation.currentValue);
-            }
+            }else{
+				play(defaultAnimation);
+			}
         }
 
         /**
@@ -64,6 +66,9 @@ package com.pblabs.animation
          */
         public function play(animation:String, startValue:* = null):void
         {
+			//Added this check because component fails onReset when no animation information exists
+			if(!animations) return;
+			
         	if (_currentAnimation && _currentAnimation.isAnimating)
         		   _currentAnimation.stop();
         	
@@ -83,7 +88,7 @@ package com.pblabs.animation
          */
         override protected function onReset():void
         {
-            if (!autoPlay || _currentAnimation)
+            if (!autoPlay)
                 return;
 
             play(defaultAnimation);

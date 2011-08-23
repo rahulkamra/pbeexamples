@@ -50,6 +50,7 @@ package com.pblabs.rendering2D.spritesheet
         protected function deleteFrames():void
         {
             frames = null;
+			frameNotes = null;
         }
         
         /**
@@ -116,11 +117,11 @@ package com.pblabs.rendering2D.spritesheet
          * The number of frames the sprite container has. This counts each set of
          * directions as one frame.
          */
+		[EditorData(ignore="true")]
         public function get frameCount():int
         {
             return rawFrameCount / directionsPerFrame;
         }
-
 		public function set frameCount(value:int):void
 		{
 			if (!frames)

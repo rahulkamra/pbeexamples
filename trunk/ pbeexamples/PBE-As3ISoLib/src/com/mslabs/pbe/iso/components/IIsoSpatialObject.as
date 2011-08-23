@@ -1,8 +1,7 @@
 ﻿package com.mslabs.pbe.iso.components
 {
     import as3isolib.geom.*;
-    
-    import com.pblabs.rendering2D.ISpatialObject2D;
+    import com.pblabs.rendering2D.*;
 
     public interface IIsoSpatialObject extends ISpatialObject2D
     {
@@ -24,6 +23,10 @@
         function get isometricVolume() : Pt;
 
         function set isometricVolume(param1:Pt) : void;
+
+        function get spatialManager() : ISpatialManager2D;
+
+        function set spatialManager(param1:ISpatialManager2D) : void;
 
     }
 }

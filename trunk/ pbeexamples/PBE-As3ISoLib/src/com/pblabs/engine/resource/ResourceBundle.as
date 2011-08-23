@@ -87,8 +87,12 @@ package com.pblabs.engine.resource
                 resSource = "";
                 resMimeType = "";
                 resTypeName="";
-                
-                // Loop through each metadata tag in the child variable
+				
+				if(v.@type != 'Class' && res == null){
+					res = getDefinitionByName( v.@type ) as Class;
+				}
+
+				// Loop through each metadata tag in the child variable
                 for each (var meta:XML in v.children())
                 {
                     // If we've got an embedded metadata
@@ -112,20 +116,27 @@ package com.pblabs.engine.resource
                     }
                     else if (meta.@name == "ResourceType")
                     {
+						resIsEmbedded = true;
+						
                         for each (arg in meta.children())
                         {
+							if (arg.@key == "name") 
+							{
+								resSource = arg.@value;
+							} 
+							//Override to allow you to specify the resource type that should be used.
                             if (arg.@key == "className") 
                             {
                                 resTypeName = arg.@value;
-                            } 
+							}
                         }                  
-                    }
+					}
                 }
                 
                 // Now that we've processed all of the metadata, it's time to see if it embedded properly.
                 
                 // Sanity check:
-                if ( !resIsEmbedded || resSource == "" || res == null ) 
+                if ( !resIsEmbedded || resSource == "" || res == null) 
                 {
                     Logger.error(this, "ResourceBundle", "A resource in the resource bundle with the name '" + v.@name + "' has failed to embed properly.  Please ensure that you have the command line option \"--keep-as3-metadata+=TypeHint,EditorData,Embed\" set properly.  Additionally, please check that the [Embed] metadata syntax is correct.");
                     continue;

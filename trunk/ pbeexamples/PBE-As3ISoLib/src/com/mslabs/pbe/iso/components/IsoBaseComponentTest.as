@@ -3,7 +3,6 @@
     import as3isolib.geom.*;
     import com.pblabs.engine.entity.*;
     import flash.display.*;
-    import flexunit.framework.*;
 
     public class IsoBaseComponentTest extends Sprite
     {
@@ -30,20 +29,20 @@
 
         public function testPosition_And_PositionOffset_Property_Types() : void
         {
-            //Assert.assertTrue("The Position property of the IsoBaseComponent needs to be re-Initialized with type as3isolib.geom.Pt ", this.testClass.position is Pt);
-            //Assert.assertTrue("The PositionOffset property of the IsoBaseComponent needs to be re-Initialized with type as3isolib.geom.Pt ", this.testClass.position is Pt);
+           // Assert.assertTrue("The Position property of the IsoBaseComponent needs to be re-Initialized with type as3isolib.geom.Pt ", this.testClass.position is Pt);
+           // Assert.assertTrue("The PositionOffset property of the IsoBaseComponent needs to be re-Initialized with type as3isolib.geom.Pt ", this.testClass.position is Pt);
             return;
         }// end function
 
         public function testGet_isoComponent() : void
         {
-            //Assert.assertNotNull("IsoObject should not be null", this.testClass.isoComponent);
+           // Assert.assertNotNull("IsoObject should not be null", this.testClass.isoComponent);
             return;
         }// end function
 
         public function testSet_isoComponent() : void
         {
-          //  Assert.fail("Test method Not yet implemented");
+           // Assert.fail("Test method Not yet implemented");
             return;
         }// end function
 

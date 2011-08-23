@@ -18,6 +18,7 @@ package com.pblabs.engine.resource
     import flash.net.URLLoader;
     import flash.net.URLLoaderDataFormat;
     import flash.net.URLRequest;
+    import flash.system.LoaderContext;
     import flash.utils.ByteArray;
     
     /**
@@ -147,11 +148,17 @@ package com.pblabs.engine.resource
             if(!(data is ByteArray))
                 throw new Error("Default Resource can only process ByteArrays!");
             
+			var context : LoaderContext = new LoaderContext();
+			//This property is only available when you are compiling using the AIR framework
+			//So I am checking first here
+			if(context.hasOwnProperty('allowCodeImport'))
+				context['allowCodeImport'] = true;
+			
             var loader:Loader = new Loader();
             loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadComplete);
             loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onDownloadError);
             loader.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onDownloadSecurityError);
-            loader.loadBytes(data);
+            loader.loadBytes(data, context);
             
             // Keep reference so the Loader isn't GC'ed.
             _loader = loader;
@@ -165,7 +172,16 @@ package com.pblabs.engine.resource
         {
             _referenceCount++;
         }
-        
+
+		/**
+		 * Disposes resource and cleans data
+		 */
+		public function dispose():void
+		{
+			_urlLoader = null;
+			_loader = null;
+		}
+				
         /**
          * Decrements the number of references to the resource. This should only ever be
          * called by the ResourceManager.
@@ -184,7 +200,7 @@ package com.pblabs.engine.resource
             onFailed(message);        	
         }
         
-        /**
+		/**
          * This is called when the resource data has been fully loaded and conditioned.
          * Returning true from this method means the load was successful. False indicates
          * failure. Subclasses must implement this method.
@@ -260,7 +276,7 @@ package com.pblabs.engine.resource
         }
         
         protected var _filename:String = null;
-        private var _isLoaded:Boolean = false;
+        protected var _isLoaded:Boolean = false;
         private var _didFail:Boolean = false;
         private var _urlLoader:URLLoader;
         private var _loader:Loader;

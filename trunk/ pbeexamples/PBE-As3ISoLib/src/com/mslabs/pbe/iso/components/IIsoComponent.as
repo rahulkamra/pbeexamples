@@ -2,6 +2,7 @@
 {
     import as3isolib.core.*;
     import as3isolib.geom.*;
+    import com.pblabs.rendering2D.*;
     import flash.display.*;
     import flash.geom.*;
 
@@ -11,6 +12,10 @@
         public function IIsoComponent();
 
         function get isoComponent() : IIsoDisplayObject;
+
+        function get scene() : IScene2D;
+
+        function set scene(param1:IScene2D) : void;
 
         function get displayObject() : DisplayObject;
 

@@ -11,12 +11,14 @@ package com.pblabs.rendering2D
     import com.pblabs.engine.PBE;
     import com.pblabs.engine.debug.Logger;
     import com.pblabs.rendering2D.modifier.Modifier;
+    import com.pblabs.rendering2D.ui.FlexSceneView;
     import com.pblabs.rendering2D.ui.IUITarget;
     
     import flash.display.Bitmap;
     import flash.display.BitmapData;
     import flash.display.Sprite;
     import flash.geom.Matrix;
+    import flash.geom.Point;
 
     /**
      * A scene which draws to a BitmapData. Useful when you want to do
@@ -53,15 +55,20 @@ package com.pblabs.rendering2D
                 _sceneView.removeDisplayObject(_rootSprite);
                 var realRoot:Sprite = new Sprite();
                 realRoot.addChild(_rootSprite);
+				if (PBE.mainClass.parent!=PBE.mainStage)
+				{
+					realRoot.x = PBE.mainClass.parent.x;
+					realRoot.y = PBE.mainClass.parent.y;
+				}
                 _sceneView.addDisplayObject(bitmap);
             }
         }
-        
+											
         public override function onFrame(elapsed:Number) : void
         {
             // Let things update.
             super.onFrame(elapsed);
-
+						
             if(sceneView.width == 0 || sceneView.height == 0)
             {
                 // Firefox 3 bug - we can get stageHeight/stageWidth of 0 which
@@ -136,8 +143,44 @@ package com.pblabs.rendering2D
 			
             backbuffer.unlock();						
             bitmap.bitmapData = backbuffer;
+
         }
 		
+		public override function transformWorldToScreen(inPos:Point):Point
+		{
+			updateTransform();
+			if (sceneView is FlexSceneView)
+			{
+				var p:Point = (sceneView as FlexSceneView).localToGlobal(inPos);
+				return p.add(new Point(_rootSprite.x,_rootSprite.y));				
+			}
+			else
+			  return _rootSprite.localToGlobal(inPos);            
+		}
+		
+
+		public override function transformSceneToScreen(inPos:Point):Point
+		{
+			return transformWorldToScreen(inPos);            
+		}
+		
+		public override function transformScreenToScene(inPos:Point):Point
+		{
+			return transformScreenToWorld(inPos);
+		}
+				
+		public override function transformScreenToWorld(inPos:Point):Point
+		{
+			updateTransform();			
+			if (sceneView is FlexSceneView)
+			{
+				var p:Point = (sceneView as FlexSceneView).globalToLocal(inPos);
+				return p.subtract(new Point(_rootSprite.x,_rootSprite.y));
+			}
+			else			
+				return _rootSprite.globalToLocal(inPos);						
+		}
+						
 		private var _modifiers:Array = new Array();
 	}
 }
