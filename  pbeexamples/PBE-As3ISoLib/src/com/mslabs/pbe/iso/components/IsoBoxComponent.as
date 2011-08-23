@@ -1,7 +1,9 @@
 ﻿package com.mslabs.pbe.iso.components
 {
     import as3isolib.display.primitive.*;
+    
     import com.pblabs.engine.entity.*;
+    
     import flash.utils.*;
 
     public class IsoBoxComponent extends IsoBaseComponent
@@ -17,7 +19,7 @@
 
         public static function getFrom(param1:IEntity) : IsoBoxComponent
         {
-            return param1.lookupComponentByType(IsoBoxComponent) as IsoBoxComponent;
+            return param1.lookupComponentByType(IsoBoxComponent) as IsoBoxComponent
         }// end function
 
     }

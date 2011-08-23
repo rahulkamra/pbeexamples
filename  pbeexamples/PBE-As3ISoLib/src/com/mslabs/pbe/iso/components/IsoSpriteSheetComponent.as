@@ -1,7 +1,6 @@
 ﻿package com.mslabs.pbe.iso.components
 {
     import com.pblabs.engine.core.*;
-    import com.pblabs.engine.debug.*;
     import com.pblabs.engine.entity.*;
     import com.pblabs.rendering2D.ICopyPixelsRenderer;
     import com.pblabs.rendering2D.spritesheet.*;
@@ -13,15 +12,19 @@
     {
         protected var _smoothing:Boolean = false;
         private var _setRegistration:Boolean = false;
-        public var spriteSheet:SpriteContainerComponent;
+        public var spriteSheetReference:PropertyReference;
+		//changed public var spriteSheet:ISpriteSheet;
+        public var spriteSheet:Object;
         public var spriteIndex:int = 0;
         public var directionReference:PropertyReference;
-		public static const zeroPoint:Point = new Point();
+        public var direction:Number = 0;
+        static const zeroPoint:Point = new Point();
 
         public function IsoSpriteSheetComponent(param1:Boolean = false)
         {
             super(param1);
             this._smoothing = true;
+            optimize = false;
             return;
         }// end function
 
@@ -36,7 +39,20 @@
             return;
         }// end function
 
-        public function isPixelPathActive(param1:Matrix) : Boolean
+        override protected function onRemove() : void
+        {
+            if (this.spriteSheet)
+            {
+                this.spriteSheet.destroy();
+                this.spriteSheet = null;
+            }
+            this.spriteSheetReference = null;
+            this.directionReference = null;
+            super.onRemove();
+            return;
+        }// end function
+
+        override public function isPixelPathActive(param1:Matrix) : Boolean
         {
             if (param1.a == 1)
             {
@@ -59,7 +75,7 @@
             return displayObject.filters.length == 0;
         }// end function
 
-        public function drawPixels(param1:Matrix, param2:BitmapData) : void
+        override public function drawPixels(param1:Matrix, param2:BitmapData) : void
         {
             param2.copyPixels(Bitmap(_spriteObj).bitmapData, Bitmap(_spriteObj).bitmapData.rect, param1.transformPoint(zeroPoint), null, null, true);
             return;
@@ -78,8 +94,44 @@
             return Bitmap(_spriteObj).bitmapData.hitTest(zeroPoint, 1, _loc_3);
         }// end function
 
+        override protected function attachLoadedResource() : void
+        {
+            var _loc_1:BitmapData = null;
+            if (owner)
+            {
+                if (_spriteObj)
+                {
+                    removeResourceData();
+                }
+                if (this.spriteSheet)
+                {
+                }
+                if (this.spriteSheet is BasicSpriteSheetComponent)
+                {
+                    if (!resourcePropertyReference)
+                    {
+                        return;
+                    }
+                    _loc_1 = owner.getProperty(resourcePropertyReference) as BitmapData;
+                    if (!_loc_1)
+                    {
+                        return;
+                    }
+                    (this.spriteSheet as BasicSpriteSheetComponent).imageData = _loc_1;
+                }
+            }
+            return;
+        }// end function
+
         protected function getCurrentFrame() : BitmapData
         {
+            if (!this.spriteSheet)
+            {
+            }
+            if (this.spriteSheetReference)
+            {
+                this.spriteSheet = owner.getProperty(this.spriteSheetReference) as ISpriteSheet;
+            }
             if (this.spriteSheet)
             {
             }
@@ -93,18 +145,28 @@
             if (this.spriteSheet.isLoaded)
             {
             }
-            if (this.spriteSheet.center)
+            if (this.spriteSheet.centered)
+            {
+                if (spriteOffset.x == 0)
+                {
+                }
+            }
+            if (spriteOffset.y == 0)
             {
                 registrationPoint = this.spriteSheet.center.clone();
                 registrationPoint.x = registrationPoint.x * -1;
                 registrationPoint.y = registrationPoint.y * -1;
+                spriteOffset = new Point(-this.spriteSheet.center.x, -this.spriteSheet.center.y);
             }
             this._setRegistration = true;
             if (this.directionReference)
             {
-                return this.spriteSheet.getFrame(this.spriteIndex, owner.getProperty(this.directionReference) as Number);
             }
-            return this.spriteSheet.getFrame(this.spriteIndex);
+            if (owner.doesPropertyExist(this.directionReference))
+            {
+                this.direction = owner.getProperty(this.directionReference) as Number;
+            }
+            return this.spriteSheet.getFrame(this.spriteIndex, this.direction);
         }// end function
 
         public function get bitmapData() : BitmapData
@@ -120,7 +182,6 @@
         {
             if (param1 == null)
             {
-                Logger.error(this, " set bitmapData", "BitmapData can not be null");
                 return;
             }
             sprite = param1;

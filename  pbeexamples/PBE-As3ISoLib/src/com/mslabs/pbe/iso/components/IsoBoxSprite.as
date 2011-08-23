@@ -19,12 +19,17 @@
             {
                 super.drawGeometry();
             }
+            else
+            {
+                mainContainer.graphics.clear();
+            }
             return;
         }// end function
 
         override protected function createChildren() : void
         {
-            mainContainer = new MovieClip();
+            mainContainer = new Sprite();
+            super.createChildren();
             return;
         }// end function
 

@@ -178,7 +178,18 @@ package com.pblabs.engine.core
             mapActionToHandler(action, handler);
         }      
 
-
+		/**
+		 * Removes a specific key Input mapping
+         * 
+		 * @param key The key that will trigger the handler. This should be one
+         * of the constants defined in the InputKey class.
+		 **/
+		public function removeKeyHandler(key:InputKey):void
+		{
+			delete _bindings[_keymap[key.keyCode]];
+			delete _keymap[key.keyCode];
+		}
+		
         public function destroy():void
         {
             PBE.inputManager.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
@@ -187,6 +198,11 @@ package com.pblabs.engine.core
             PBE.inputManager.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
             PBE.inputManager.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
             PBE.inputManager.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			
+			for each( var action : String in _keymap)
+			{
+				if(_bindings.hasOwnProperty(action)) delete _bindings[action];
+			}
         }
 
         private function onKeyDown(event:KeyboardEvent):void
@@ -260,7 +276,10 @@ package com.pblabs.engine.core
                 return;
             }
 
-            callback(value);
+			if(callback.length == 2)
+            	callback(value, keyCode);
+			else
+				callback(value);
         }
 
         private var _lastMouseX:Number = Number.NEGATIVE_INFINITY;

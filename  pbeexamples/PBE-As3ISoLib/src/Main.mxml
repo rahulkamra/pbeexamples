@@ -1,7 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" applicationComplete="application1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import as3isolib.geom.Pt;
+			import as3isolib.graphics.Stroke;
+			
+			import com.mslabs.pbe.components.InteractionComponent;
+			import com.mslabs.pbe.components.ResourceLoaderComponent;
+			import com.mslabs.pbe.iso.blit.IsoBitmapBaseComponent;
+			import com.mslabs.pbe.iso.blit.IsoBitmapSceneLayer;
+			import com.mslabs.pbe.iso.blit.IsoBitmapSpriteComponent;
+			import com.mslabs.pbe.iso.characters.IIsoCharacter;
+			import com.mslabs.pbe.iso.characters.IsoCharacter;
+			import com.mslabs.pbe.iso.components.IIsoComponent;
+			import com.mslabs.pbe.iso.components.IIsoSpatialObject;
+			import com.mslabs.pbe.iso.components.IsoAxis;
+			import com.mslabs.pbe.iso.components.IsoBaseComponent;
+			import com.mslabs.pbe.iso.components.IsoBaseComponentTest;
+			import com.mslabs.pbe.iso.components.IsoBoxComponent;
+			import com.mslabs.pbe.iso.components.IsoBoxSprite;
+			import com.mslabs.pbe.iso.components.IsoComponentsSuite;
+			import com.mslabs.pbe.iso.components.IsoGridComponent;
+			import com.mslabs.pbe.iso.components.IsoSpatialComponent;
+			import com.mslabs.pbe.iso.components.IsoSpriteComponent;
+			import com.mslabs.pbe.iso.components.IsoSpriteSheetComponent;
+			import com.mslabs.pbe.iso.renderers.IIsoCustomRenderer;
+			import com.mslabs.pbe.iso.renderers.IsoDefaultViewRenderer;
+			import com.mslabs.pbe.iso.renderers.IsoSceneLayoutRenderer;
+			import com.mslabs.pbe.iso.scene.IsoSceneLayer;
+			import com.mslabs.pbe.iso.scene.IsoSceneView;
+			import com.pblabs.engine.PBE;
+			import com.pblabs.engine.entity.IEntity;
+			import com.pblabs.engine.entity.allocateEntity;
+			import com.pblabs.rendering2D.BasicSpatialManager2D;
+			import com.pblabs.rendering2D.SceneAlignment;
+			
+			import mx.core.FlexGlobals;
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			
+			
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				IsoSceneLayoutRenderer;
+				IsoSceneView;
+				IsoBitmapBaseComponent
+				com.mslabs.pbe.iso.renderers.IsoDefaultViewRenderer;
+				com.mslabs.pbe.iso.components.IsoSpatialComponent
+				com.mslabs.pbe.iso.components.IsoAxis
+				com.mslabs.pbe.iso.components.IsoGridComponent
+				com.mslabs.pbe.components.InteractionComponent;
+				com.mslabs.pbe.components.ResourceLoaderComponent;
+				com.mslabs.pbe.iso.characters.IsoCharacter
+				com.mslabs.pbe.iso.characters.IIsoCharacter;
+				com.mslabs.pbe.iso.components.IIsoComponent;
+				com.mslabs.pbe.iso.components.IIsoSpatialObject;
+				com.mslabs.pbe.iso.components.IsoBaseComponent;
+				com.mslabs.pbe.iso.components.IsoBaseComponentTest;
+				com.mslabs.pbe.iso.components.IsoBoxComponent;
+				com.mslabs.pbe.iso.components.IsoBoxSprite;
+				com.mslabs.pbe.iso.components.IsoComponentsSuite;
+				com.mslabs.pbe.iso.components.IsoGridComponent;
+				com.mslabs.pbe.iso.components.IsoSpatialComponent;
+				com.mslabs.pbe.iso.components.IsoSpriteComponent;
+				com.mslabs.pbe.iso.components.IsoSpriteSheetComponent
+				com.mslabs.pbe.iso.renderers.IIsoCustomRenderer
+				com.mslabs.pbe.iso.renderers.IsoDefaultViewRenderer;
+				com.mslabs.pbe.iso.renderers.IsoSceneLayoutRenderer;
+				com.mslabs.pbe.iso.scene.IsoSceneLayer;
+				com.mslabs.pbe.iso.scene.IsoSceneView;
+				
+				start();
+				initializ();
+				addAsset();
+			}
+			[Embed(source="1.png")]
+			public var class1:Class;
+			
+			[Embed(source="2.png")]
+			public var class2:Class;
+			
+			[Embed(source="3.png")]
+			public var class3:Class;
+			
+			[Embed(source="13_1.swf" ,  symbol="cco")]
+			public var worker:Class;
+			
+			public static var wrapper:UIComponent = new UIComponent;
+			
+			private var firstisoScene:IsoBitmapSceneLayer;
+			private function start():void
+			{
+				// TODO Auto Generated method stub
+				wrapper.width = FlexGlobals.topLevelApplication.width;
+				wrapper.height = FlexGlobals.topLevelApplication.height;
+				FlexGlobals.topLevelApplication.addElement(wrapper);
+				//starting PBE
+				PBE.startup(wrapper);
+			}
+			
+			private function initializ():void
+			{
+				// TODO Auto Generated method stub
+				var defaultView:IsoSceneView = new IsoSceneView();
+				defaultView.name = "IsoView";
+				
+				var gameEntity:IEntity = allocateEntity();
+				gameEntity.initialize("IsoGame");
+				
+				var basicSpatial:BasicSpatialManager2D = new BasicSpatialManager2D;
+				gameEntity.addComponent(basicSpatial,"SpatialManager");
+				
+				firstisoScene = new IsoBitmapSceneLayer();
+				firstisoScene.sceneView = defaultView;
+				
+				gameEntity.addComponent(firstisoScene,"Scene_0");
+				
+				var isoGrid:IsoGridComponent = new IsoGridComponent();
+				isoGrid.cellSize = 50;
+				isoGrid.gridSize = new Pt(20,20);
+				isoGrid.gridStroke = new Stroke(1,0);
+				isoGrid.scene = firstisoScene;
+				isoGrid.showOrigin = false;
+				gameEntity.addComponent(isoGrid,"IsoGrid");
+				
+				
+			}
+			
+			
+			private function addAsset():void
+			{
+				// TODO Auto Generated method stub
+				var boxEntity:IEntity = allocateEntity();
+				
+				var sprite:IsoBitmapSpriteComponent = new IsoBitmapSpriteComponent();
+				sprite.sprite = worker;
+				sprite.scene = firstisoScene;
+				
+				boxEntity.addComponent(sprite,"Sprite");
+				boxEntity.initialize("Box1");
+				//box.debug
+				
+			}
+			
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>

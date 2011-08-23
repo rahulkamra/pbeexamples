@@ -3,9 +3,7 @@
     import as3isolib.display.scene.*;
     import as3isolib.geom.*;
     import as3isolib.graphics.*;
-    
     import com.pblabs.engine.entity.*;
-    
     import flash.utils.*;
 
     public class IsoGridComponent extends IsoBaseComponent
@@ -16,6 +14,7 @@
         {
             super(param1);
             _isoObject = new IsoGrid();
+            _isoObject.isAnimated = false;
             return;
         }// end function
 
