@@ -2,7 +2,6 @@ package port.iso.components
 {
 	import as3isolib.geom.Pt;
 	
-	import com.mslabs.pbe.iso.components.IIsoSpatialObject;
 	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.core.ObjectType;
 	import com.pblabs.rendering2D.DisplayObjectRenderer;

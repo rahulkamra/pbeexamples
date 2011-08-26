@@ -3,7 +3,6 @@ package port.iso.components
 	import as3isolib.core.IIsoDisplayObject;
 	import as3isolib.geom.Pt;
 	
-	import com.mslabs.pbe.iso.components.IIsoComponent;
 	import com.pblabs.engine.PBUtil;
 	import com.pblabs.engine.core.ObjectType;
 	import com.pblabs.engine.debug.Logger;
