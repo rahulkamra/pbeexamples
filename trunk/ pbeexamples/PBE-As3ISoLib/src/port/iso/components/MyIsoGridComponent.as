@@ -1,16 +1,18 @@
-﻿package com.mslabs.pbe.iso.components
+﻿package port.iso.components
 {
     import as3isolib.display.scene.*;
     import as3isolib.geom.*;
     import as3isolib.graphics.*;
+    
     import com.pblabs.engine.entity.*;
+    
     import flash.utils.*;
 
-    public class IsoGridComponent extends IsoBaseComponent
+    public class MyIsoGridComponent extends MyIsoBaseComponent
     {
-        public static const COMPONENT_NAME:String = getQualifiedClassName(IsoGridComponent).replace("::", ".");
+        public static const COMPONENT_NAME:String = getQualifiedClassName(MyIsoGridComponent).replace("::", ".");
 
-        public function IsoGridComponent(param1:Boolean = false) : void
+        public function MyIsoGridComponent(param1:Boolean = false) : void
         {
             super(param1);
             _isoObject = new IsoGrid();
@@ -73,9 +75,9 @@
             return;
         }// end function
 
-        public static function getFrom(param1:IEntity) : IsoGridComponent
+        public static function getFrom(param1:IEntity) : MyIsoGridComponent
         {
-            return param1.lookupComponentByType(IsoGridComponent) as IsoGridComponent;
+            return param1.lookupComponentByType(MyIsoGridComponent) as MyIsoGridComponent;
         }// end function
 
     }
