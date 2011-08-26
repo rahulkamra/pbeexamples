@@ -63,9 +63,6 @@ package port.iso.scene
 				{
 					MyIsoSceneView(_sceneView).render(true);
 				}
-				
-				
-				
 			}
 		}
 		
@@ -79,7 +76,7 @@ package port.iso.scene
 					_renderers[dor.displayObject] = dor;
 				}
 				this.addIsoComponent(IIsoComponent(dor).isoComponent);
-			}
+			} 
 			else
 			{
 				Logger.error(this, "add", "you can not add a non IIsoComponent to this type of Scene");
@@ -124,7 +121,7 @@ package port.iso.scene
 		
 		override protected function onAdd() : void
 		{
-			this._layoutRenderer = new IsoSceneLayoutRenderer();
+			//this._layoutRenderer = new IsoSceneLayoutRenderer();
 			this._isoScene.layoutRenderer = this._layoutRenderer;
 			_rootSprite = this._isoScene.container;
 			super.onAdd();
