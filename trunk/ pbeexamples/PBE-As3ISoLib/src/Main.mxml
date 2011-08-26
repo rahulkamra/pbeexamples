@@ -25,6 +25,7 @@
 			import port.iso.components.MyIsoGridComponent;
 			import port.iso.components.MyIsoSpatialComponent;
 			import port.iso.components.MyIsoSpriteComponent;
+			import port.iso.renderers.IsoSimpleSceneLayoutRenderer;
 			import port.iso.scene.IsoDisplayObjectScene;
 			import port.iso.scene.MyIsoSceneView;
 			
@@ -101,6 +102,7 @@
 				
 				firstisoScene = new IsoDisplayObjectScene();
 				firstisoScene.sceneView = defaultView;
+				firstisoScene.layoutRenderer = new IsoSimpleSceneLayoutRenderer();
 				
 				gameEntity.addComponent(firstisoScene,"Scene_0");
 				
@@ -117,7 +119,7 @@
 			private function addAsset():void
 			{
 				// TODO Auto Generated method stub
-				for(var count:int = 0 ; count < 10 ; count++){
+				for(var count:int = 0 ; count < 2 ; count++){
 					createAsset(count);
 				}
 				//box.debug
