@@ -143,6 +143,7 @@ package com.pblabs.rendering2D
 			
             backbuffer.unlock();						
             bitmap.bitmapData = backbuffer;
+			trace("OnFrame");
 
         }
 		
