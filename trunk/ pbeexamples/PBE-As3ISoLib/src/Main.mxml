@@ -9,9 +9,6 @@
 			
 			import com.mslabs.pbe.components.InteractionComponent;
 			import com.mslabs.pbe.components.ResourceLoaderComponent;
-			import com.mslabs.pbe.iso.components.IIsoComponent;
-			import com.mslabs.pbe.iso.components.IIsoSpatialObject;
-			import com.mslabs.pbe.iso.components.IsoSpatialComponent;
 			import com.mslabs.pbe.iso.renderers.IIsoCustomRenderer;
 			import com.mslabs.pbe.iso.renderers.IsoDefaultViewRenderer;
 			import com.mslabs.pbe.iso.renderers.IsoSceneLayoutRenderer;
@@ -137,6 +134,7 @@
 				
 				var sprite:MyIsoSpriteComponent = new MyIsoSpriteComponent(false);
 				sprite.sprite = worker;
+				sprite.optimize = false;
 				sprite.scene = firstisoScene;
 				sprite.spatialComponentName = "Spatial"+id
 				boxEntity.addComponent(sprite,"Sprite"+id);

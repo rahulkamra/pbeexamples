@@ -2,7 +2,6 @@ package port.iso.components
 {
 	import avmplus.getQualifiedClassName;
 	
-	import com.mslabs.pbe.iso.components.IsoBoxSprite;
 	import com.mslabs.utils.IsoUtils;
 	import com.pblabs.engine.debug.Logger;
 	
@@ -23,7 +22,7 @@ package port.iso.components
 		{
 			this.spriteOffset = new Point();
 			super(param1);
-			_isoObject = new IsoBoxSprite();
+			_isoObject = new MyIsoBoxSprite();
 			optimize = true;
 			return;
 		}

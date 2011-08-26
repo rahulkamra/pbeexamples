@@ -9,7 +9,6 @@ package port.iso.scene
 	
 	import avmplus.getQualifiedClassName;
 	
-	import com.mslabs.pbe.iso.components.IIsoComponent;
 	import com.mslabs.pbe.iso.renderers.IIsoCustomRenderer;
 	import com.mslabs.pbe.iso.renderers.IsoSceneLayoutRenderer;
 	import com.pblabs.engine.PBE;
@@ -29,6 +28,8 @@ package port.iso.scene
 	import flash.geom.Rectangle;
 	
 	import mx.core.FlexGlobals;
+	
+	import port.iso.components.IIsoComponent;
 	
 	
 	public class IsoDisplayObjectScene extends DisplayObjectScene implements ITickedObject
