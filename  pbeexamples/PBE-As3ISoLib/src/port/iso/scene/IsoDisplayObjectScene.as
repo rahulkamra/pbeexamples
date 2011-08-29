@@ -30,6 +30,7 @@ package port.iso.scene
 	import mx.core.FlexGlobals;
 	
 	import port.iso.components.IIsoComponent;
+	import port.iso.renderers.IsoSimpleSceneLayoutRenderer;
 	
 	
 	public class IsoDisplayObjectScene extends DisplayObjectScene implements ITickedObject
@@ -121,33 +122,35 @@ package port.iso.scene
 		
 		override protected function onAdd() : void
 		{
-			//this._layoutRenderer = new IsoSceneLayoutRenderer();
-			this._isoScene.layoutRenderer = this._layoutRenderer;
-			_rootSprite = this._isoScene.container;
+			//_layoutRenderer = new IsoSceneLayoutRenderer();
+			_layoutRenderer = new IsoSimpleSceneLayoutRenderer();
+			_isoScene.layoutRenderer = _layoutRenderer;
+			
+			_rootSprite = _isoScene.container;
+			
 			super.onAdd();
+			
 			PBE.processManager.addTickedObject(this);
-			return;
-		}// end function
+		}
 		
 		override protected function onRemove() : void
 		{
-			this._isoScene.removeAllChildren();
-			this._isoScene.hostContainer = null;
+			_isoScene.removeAllChildren();
+			_isoScene.hostContainer = null;
 			this._rootSprite = null;
 			this.displayContainer = null;
 			this.displayObjectContainerProperty = null;
-			if (this._layoutRenderer != null)
+			if (_layoutRenderer != null)
 			{
 				this._layoutRenderer.destroy();
 				this.layoutRenderer = null;
 			}
-			this._isoScene.removeAllChildren();
+			_isoScene.removeAllChildren();
 			IsoView(this._sceneView).removeScene(this._isoScene);
 			this._isoScene = null;
 			this._sceneView = null;
 			super.onRemove();
 			PBE.processManager.removeTickedObject(this);
-			return;
 		}
 		override protected function onReset() : void
 		{
