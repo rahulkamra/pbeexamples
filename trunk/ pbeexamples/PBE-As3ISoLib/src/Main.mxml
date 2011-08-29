@@ -8,7 +8,6 @@
 			import as3isolib.graphics.Stroke;
 			
 			import com.mslabs.pbe.components.InteractionComponent;
-			import com.mslabs.pbe.components.ResourceLoaderComponent;
 			import com.mslabs.pbe.iso.renderers.IIsoCustomRenderer;
 			import com.mslabs.pbe.iso.renderers.IsoDefaultViewRenderer;
 			import com.mslabs.pbe.iso.renderers.IsoSceneLayoutRenderer;
@@ -59,7 +58,7 @@
 				
 				start();
 				initializ();
-				addAsset();
+				//addAsset();
 			}
 			[Embed(source="1.png")]
 			public var class1:Class;
@@ -75,9 +74,9 @@
 			
 			public static var wrapper:UIComponent = new UIComponent;
 			
-			private var firstisoScene:IsoDisplayObjectScene;
+			public var firstisoScene:IsoDisplayObjectScene;
 			
-			private var basicSpatial:BasicSpatialManager2D;
+			public var basicSpatial:BasicSpatialManager2D;
 			private function start():void
 			{
 				// TODO Auto Generated method stub
@@ -140,9 +139,18 @@
 				sprite.scene = firstisoScene;
 				sprite.spatialComponentName = "Spatial"+id
 				boxEntity.addComponent(sprite,"Sprite"+id);
-				
-				trace("Creating",id);
-				
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				addAsset();
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				AddSprites.addSpriteSheet();
 			}
 			
 		]]>
@@ -150,4 +158,6 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	<s:Button x="37" y="127" label="Add Symbol" click="button1_clickHandler(event)"/>
+	<s:Button x="37" y="156" label="Add Sprite Sheet" click="button2_clickHandler(event)"/>
 </s:Application>

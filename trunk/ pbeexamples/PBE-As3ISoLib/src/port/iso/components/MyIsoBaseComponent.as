@@ -399,6 +399,7 @@ package port.iso.components
 		
 		public function drawPixels(objectToScreen:Matrix, renderTarget:BitmapData):void
 		{
+			trace("Drawing!!");
 			this._bitmapHolder.bitmapData = this.isoComponent.getRenderData().bitmapData;
 			if (_bitmapHolder.bitmapData!=null)
 				renderTarget.copyPixels(_bitmapHolder.bitmapData, _bitmapHolder.bitmapData.rect, objectToScreen.transformPoint(zeroPoint), null, null, true);
