@@ -35,7 +35,7 @@ package port.iso.scene
 	
 	public class IsoDisplayObjectScene extends DisplayObjectScene implements ITickedObject
 	{
-		protected var _isoScene:IsoScene;
+		public var _isoScene:IsoScene;
 		protected var _layoutRenderer:IIsoCustomRenderer;
 		protected var _localDisplayContainer:DisplayObjectContainer;
 		public var displayObjectContainerProperty:PropertyReference;

@@ -21,6 +21,8 @@
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
 			
+			import mycmp.MousePanningSceneComponent;
+			
 			import port.iso.components.MyIsoGridComponent;
 			import port.iso.components.MyIsoSpatialComponent;
 			import port.iso.components.MyIsoSpriteComponent;
@@ -77,6 +79,11 @@
 			public var firstisoScene:IsoDisplayObjectScene;
 			
 			public var basicSpatial:BasicSpatialManager2D;
+			private var mousepanning:MousePanningSceneComponent;
+
+			private var defaultView:MyIsoSceneView;
+
+			private var gameEntity:IEntity;
 			private function start():void
 			{
 				// TODO Auto Generated method stub
@@ -90,10 +97,10 @@
 			private function initializ():void
 			{
 				// TODO Auto Generated method stub
-				var defaultView:MyIsoSceneView = new MyIsoSceneView();
+				defaultView = new MyIsoSceneView();
 				defaultView.name = "IsoView";
 				
-				var gameEntity:IEntity = allocateEntity();
+				gameEntity = allocateEntity();
 				gameEntity.initialize("IsoGame");
 				
 				basicSpatial = new BasicSpatialManager2D;
@@ -153,6 +160,17 @@
 				AddSprites.addSpriteSheet();
 			}
 			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				mousepanning = new MousePanningSceneComponent();
+				mousepanning.scene = firstisoScene;
+				mousepanning.sceneView = defaultView;
+				mousepanning.leftTopOffset = new Point(200,200);
+				mousepanning.rightBottomOffset = new Point(200,200);
+				gameEntity.addComponent(mousepanning,"MousePanningComponent");
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -160,4 +178,5 @@
 	</fx:Declarations>
 	<s:Button x="37" y="127" label="Add Symbol" click="button1_clickHandler(event)"/>
 	<s:Button x="37" y="156" label="Add Sprite Sheet" click="button2_clickHandler(event)"/>
+	<s:Button x="37" y="189" label="Test mouse Component" click="button3_clickHandler(event)"/>
 </s:Application>
