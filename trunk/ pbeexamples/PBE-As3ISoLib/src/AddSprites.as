@@ -37,7 +37,6 @@ package
 		private static  function addSprite(row:int , col:int):void
 		{
 			// TODO Auto Generated method stub
-			trace(row,col)
 			var row1:int = 0; 
 			var col2:int = 0;
 			var character:IEntity = PBE.allocateEntity();
