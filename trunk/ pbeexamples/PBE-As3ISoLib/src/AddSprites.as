@@ -15,6 +15,8 @@ package
 	
 	import mx.core.FlexGlobals;
 	
+	import mycmp.MouseComponent;
+	
 	import port.iso.components.MyIsoSpatialComponent;
 	import port.iso.spritesheet.IsoSpriteSheetComponent;
 	import port.iso.spritesheet.ResourceLoaderComponent;
@@ -78,6 +80,11 @@ package
 			walk.targetValue = 29;
 			animator.animations["Walk"] = walk;
 			
+			
+			
+			var mousecomponent:MouseComponent = new MouseComponent;
+			character.addComponent(mousecomponent,"Mouse")
+				
 			character.addComponent(animator,"Animator");
 			
 		}

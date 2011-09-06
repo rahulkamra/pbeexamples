@@ -526,7 +526,9 @@ package port.iso.components
 			
 			// This is the generic version, which uses hitTestPoint. hitTestPoint
 			// takes a coordinate in screen space, so do that.
-			worldPosition = scene.transformWorldToScreen(worldPosition);
+			
+			//worldPosition = scene.transformWorldToScreen(worldPosition);
+			worldPosition = scene.transformSceneToScreen(worldPosition);
 			return displayObject.hitTestPoint(worldPosition.x, worldPosition.y, true);
 		}
 		
