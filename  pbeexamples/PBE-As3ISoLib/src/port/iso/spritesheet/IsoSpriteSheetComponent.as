@@ -82,8 +82,10 @@ package port.iso.spritesheet
 			{
 				return false;
 			}
-			var localPos:Point = transformWorldToObject(worldPosition);
-			return Bitmap(_spriteObj).bitmapData.hitTest(zeroPoint, 0x01, localPos);
+			//var localPos:Point = transformWorldToObject(worldPosition);
+			var worldPosition:Point= scene.transformSceneToScreen(worldPosition);
+			worldPosition = _spriteObj.globalToLocal(worldPosition)
+			return Bitmap(_spriteObj).bitmapData.hitTest(zeroPoint, 0x01, worldPosition);
 		}
 		
 		

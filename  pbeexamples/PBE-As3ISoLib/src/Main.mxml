@@ -21,6 +21,7 @@
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
 			
+			import mycmp.MouseManager;
 			import mycmp.MousePanningSceneComponent;
 			
 			import port.iso.components.MyIsoGridComponent;
@@ -84,6 +85,8 @@
 			private var defaultView:MyIsoSceneView;
 
 			private var gameEntity:IEntity;
+
+			private var mouseComponent:MouseManager;
 			private function start():void
 			{
 				// TODO Auto Generated method stub
@@ -120,6 +123,11 @@
 				isoGrid.showOrigin = false;
 				isoGrid.zIndex = -1;
 				gameEntity.addComponent(isoGrid,"IsoGrid");
+				
+				
+				mouseComponent = new MouseManager;
+				mouseComponent.scene = firstisoScene;
+				gameEntity.addComponent(mouseComponent,"mouseComponent");
 			}
 			
 			private function addAsset():void

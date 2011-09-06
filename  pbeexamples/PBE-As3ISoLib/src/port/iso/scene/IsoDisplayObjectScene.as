@@ -14,11 +14,14 @@ package port.iso.scene
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.PBUtil;
 	import com.pblabs.engine.core.ITickedObject;
+	import com.pblabs.engine.core.ObjectType;
 	import com.pblabs.engine.debug.Logger;
 	import com.pblabs.engine.entity.IEntity;
 	import com.pblabs.engine.entity.PropertyReference;
 	import com.pblabs.rendering2D.DisplayObjectRenderer;
 	import com.pblabs.rendering2D.DisplayObjectScene;
+	import com.pblabs.rendering2D.DisplayObjectSceneLayer;
+	import com.pblabs.rendering2D.ILayerMouseHandler;
 	import com.pblabs.rendering2D.SceneAlignment;
 	import com.pblabs.rendering2D.ui.IUITarget;
 	
@@ -368,6 +371,45 @@ package port.iso.scene
 		public static function getFrom(entity:IEntity) : IsoDisplayObjectScene
 		{
 			return entity.lookupComponentByName(COMPONENT_NAME) as IsoDisplayObjectScene;
+		}
+		
+		override public function getRenderersUnderPoint(screenPosition:Point, results:Array, mask:ObjectType = null):Boolean
+		{
+			// Query normal DO hierarchy.
+			
+			//hack fix it later
+			var unfilteredResults:Array = _rootSprite.parent.parent.parent.getObjectsUnderPoint(screenPosition);
+			var scenePosition:Point = transformScreenToScene(screenPosition);
+			
+			for each (var o:* in unfilteredResults)
+			{
+				var renderer:DisplayObjectRenderer = getRendererForDisplayObject(o);
+				
+				if(!renderer)
+					continue;
+				
+				if(!renderer.owner)
+					continue;
+				
+				if(mask && !PBE.objectTypeManager.doTypesOverlap(mask, renderer.objectMask))
+					continue;
+				
+				if(!renderer.pointOccupied(scenePosition, mask))
+					continue;
+				
+				results.push(renderer);
+			}
+			// Also give layers opportunity to return renderers.
+			scenePosition = transformScreenToScene(screenPosition);
+			for each(var l:DisplayObjectSceneLayer in _layers)
+			{
+				// Skip them if they don't use the interface.
+				if(!(l is ILayerMouseHandler))
+					continue;
+				
+				(l as ILayerMouseHandler).getRenderersUnderPoint(scenePosition, mask, results);
+			}
+			return results.length > 0 ? true : false;
 		}
 		
 	}
