@@ -7,8 +7,6 @@ package port.iso.scene
 	import as3isolib.geom.IsoMath;
 	import as3isolib.geom.Pt;
 	
-	import avmplus.getQualifiedClassName;
-	
 	import com.mslabs.pbe.iso.renderers.IIsoCustomRenderer;
 	import com.mslabs.pbe.iso.renderers.IsoSceneLayoutRenderer;
 	import com.pblabs.engine.PBE;
@@ -29,6 +27,7 @@ package port.iso.scene
 	import flash.display.DisplayObjectContainer;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.utils.getQualifiedClassName;
 	
 	import mx.core.FlexGlobals;
 	
